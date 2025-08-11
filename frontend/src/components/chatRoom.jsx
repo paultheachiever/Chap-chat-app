@@ -77,12 +77,12 @@ export default function ChatRoom({ room, user, socket }) {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl mb-2">{room?.name}</h2>
+    <div  className="h-screen flex flex-col p-4">
+      <h2 className="text-2xl mb-2 ">{room?.name}</h2>
 
       <div
   ref={msgRef}
-  className="h-1/2 overflow-y-auto border p-2 rounded bg-gray-50 mb-2 flex flex-col gap-2"
+  className=" overflow-y-auto border p-2 rounded bg-gray-50 mb-2 flex flex-col gap-2"
   style={{
     backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtdCytysZOnsqailSIWXVrCEGTlsTTX65239V8a93U5bsxaftFlHH6BnE&s')",
     backgroundSize: "cover",
