@@ -26,6 +26,7 @@ transports: ["websocket", "polling"],
 
 socketInit(io);
 
+app.use(cors());
 app.use(express.json());
 
 import authRoutes from "./routes/authRoutes.js";
