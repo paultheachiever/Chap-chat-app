@@ -12,21 +12,35 @@ import socketInit from "./socket/index.js";
 
 const app = express();
 const server = http.createServer(app);
+
+// Allowed origins
+const allowedOrigins = [
+  "https://chap-chat.onrender.com",
+  "https://chap-chat-frontend.onrender.com",
+  "http://localhost:5173",
+];
+
+// ✅ Apply proper CORS for Express routes
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ["GET", "POST"],
+  credentials: true
+}));
+app.use(express.json());
+
+// ✅ Attach Socket.io with same CORS and transports
 const io = new Server(server, {
-  cors: { origin: 
-        [
-      "https://chap-chat.onrender.com",        
-      "https://chap-chat-frontend.onrender.com", 
-      "http://localhost:5173"                   
-    ],
-}
+  cors: {
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true
+  },
+  transports: ["websocket", "polling"],
 });
 
 socketInit(io);
 
-app.use(cors());
-app.use(express.json());
-
+// Routes
 import authRoutes from "./routes/authRoutes.js";
 import roomRoutes from "./routes/roomRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
@@ -35,15 +49,13 @@ app.use("/api/auth", authRoutes);
 app.use("/api/rooms", roomRoutes);
 app.use("/api/messages", messageRoutes);
 
+// Serve frontend
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-
-
-//starting db
+// Start DB
 connectDB();
 
 const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => console.log(`server running at: http://localhost:${PORT}`));
+server.listen(PORT, () => console.log(`🚀 Server running at: http://localhost:${PORT}`));
