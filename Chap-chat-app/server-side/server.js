@@ -13,7 +13,15 @@ import socketInit from "./socket/index.js";
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: "http://localhost:5173" }
+  cors: { origin: 
+        [
+      "https://chap-chat.onrender.com",        
+      "https://chap-chat-frontend.onrender.com", 
+      "http://localhost:5173"                   
+    ],
+    methods: ["GET", "POST"],
+},
+transports: ["websocket", "polling"],
 });
 
 socketInit(io);
@@ -34,10 +42,7 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-// Commented out catch-all route for debugging
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-// });
+
 
 //starting db
 connectDB();
