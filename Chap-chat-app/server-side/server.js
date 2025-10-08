@@ -19,9 +19,7 @@ const io = new Server(server, {
       "https://chap-chat-frontend.onrender.com", 
       "http://localhost:5173"                   
     ],
-    methods: ["GET", "POST"],
-},
-transports: ["websocket", "polling"],
+}
 });
 
 socketInit(io);
