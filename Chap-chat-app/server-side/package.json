@@ -6,7 +6,7 @@
   "start": "node server-side/server.js",
   "server": "nodemon server-side/server.js",
   "client": "npm start --prefix frontend",
-  "build": "npm run build --prefix frontend",
+  "build": "npm install",
   "dev": "concurrently \"npm run server\" \"npm run client\""
 }
 ,
