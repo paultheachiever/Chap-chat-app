@@ -1,0 +1,28 @@
+{
+  "name": "server-side",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server-side/server.js",
+    "server": "nodemon server-side/server.js",
+    "client": "npm start --prefix Chap-chat-app",
+    "build": "npm run build --prefix Chap-chat-app",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mongodb": "^6.20.0",
+    "mongoose": "^7.8.7",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "nodemon": "^3.1.10"
+  }
+}
