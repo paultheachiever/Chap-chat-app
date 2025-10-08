@@ -1,13 +1,11 @@
-const mongoose = require("mongoose");
-const { Socket } = require("socket.io");
-
-
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    username:{type:String, required: true, unique:true},
-    SocketId: { type:String },
-    isOnline: { type: Boolean, default:false}
+    username: { type: String, required: true, unique: true },
+    SocketId: { type: String },
+    isOnline: { type: Boolean, default: false }
 },
-{timestamps:true}
+{ timestamps: true }
 );
-module.exports = mongoose.model("User", userSchema);
+
+export default mongoose.model("User", userSchema);

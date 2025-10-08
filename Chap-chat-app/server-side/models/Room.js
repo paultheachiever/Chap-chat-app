@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 
 const roomSchema = new mongoose.Schema({
-    name: { type:String, required:true, unique:true},
-},{timestamps:true});
+    name: { type: String, required: true, unique: true },
+}, { timestamps: true });
 
 
-module.exports = mongoose.model("Room", roomSchema);
+export default mongoose.model("Room", roomSchema);

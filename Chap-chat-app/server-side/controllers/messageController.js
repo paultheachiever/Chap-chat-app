@@ -1,6 +1,6 @@
-const Message = require("../models/Message");
+import Message from "../models/Message.js";
 
-exports.getRoomMessages = async (req, res) => {
+export const getRoomMessages = async (req, res) => {
   console.log('Room ID:', req.params.roomId);
   try {
     const messages = await Message.find({ room: req.params.roomId })
