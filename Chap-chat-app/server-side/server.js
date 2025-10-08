@@ -22,6 +22,15 @@ app.use("/api/auth", require ("./routes/authRoutes"));
 app.use("/api/rooms", require ("./routes/roomRoutes"));
 app.use("/api/messages", require ("./routes/messageRoutes"));
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
+
 //starting db
 
 connectDB();
