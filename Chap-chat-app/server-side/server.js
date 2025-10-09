@@ -28,10 +28,10 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// ✅ Attach Socket.io with same CORS and transports
+// ✅ Attach Socket.io with open CORS for debugging
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins,
+    origin: "*",
     methods: ["GET", "POST"],
     credentials: true
   },
